@@ -4,7 +4,10 @@ const mysql = require('mysql2');
 const port = 3006
 const bodyParser = require("body-parser")
 const moment = require("moment")
+const formData = require("express-form-data")
+const fs = require("fs")
 
+app.use(formData.parse())
 app.use(bodyParser.urlencoded({extended : true}))
 
 const connection = mysql.createConnection({
@@ -82,9 +85,15 @@ app.post('/cliente_del/:id_cliente', (req, res) => {
      `select * from cliente where id_cliente = ${id_cliente}`,
      (err, results, fields) => {
        if(err) console.log(err)
-       res.send(results)
+       var caminhoTemp = req.files.avatar.path
+       var caminhoNovo = `./uploads/clientes/${resultado.insertId}.png`
+       fs.copyFile(caminhoTemp, caminhoNovo, (err) => {
+         console.log(err)
+         res.send(resultado)
+       })
+ 
      }
-   );
+   )
 })
 
 app.listen(port, () => {
