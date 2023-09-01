@@ -11,10 +11,10 @@ app.use(formData.parse())
 app.use(bodyParser.urlencoded({extended : true}))
 
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  database: 'aula_bd',
-  password : 'root',
+  host: 'aulascefet.c8tuthxylqic.sa-east-1.rds.amazonaws.com',
+  user: 'aluno',
+  database: 'aulas_web',
+  password : 'alunoc3f3t',
 });
 
 app.get('/', (req, res) => {
