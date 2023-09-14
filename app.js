@@ -102,7 +102,7 @@ app.patch('/clientes/:id_cliente', (req, res) => {
 //fornecedores
 app.get('/fornecedores', (req, res) => {
   connection.query(
-    'select * from cliente',
+    'select * from fornecedores',
     (err, results, fields) => {
       if(err) console.log(err)
       res.send(results)
@@ -110,7 +110,7 @@ app.get('/fornecedores', (req, res) => {
   );
 })
 
-app.get('/fornecedores/:id_cliente', (req, res) => {
+app.get('/fornecedores/:id_fornecedores', (req, res) => {
   var id_fornecedor  = req.params.id_fornecedor  
   connection.query(
     `select * from fornecedor where id_fornecedor = ${id_fornecedor }`,
